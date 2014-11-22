@@ -1,0 +1,52 @@
+html
+	head
+		link(rel='stylesheet',href='/css/jqplot.css')
+		script(src='http://code.jquery.com/jquery-2.1.1.min.js')
+		script(src='/js/jqplot.js')
+		script(src='http://cdn.jsdelivr.net/jqplot/1.0.8/plugins/jqplot.canvasTextRenderer.min.js')
+		script(src='/js/probability.js')
+	body
+		#population
+		#normal
+		#data(style='display:none')
+			.values #{JSON.stringify(values)}
+		div(style="text-align:center")
+			div Mean: #{stats.mean.toFixed(2)}&emsp;&emsp;&emsp;Sigma #{stats.sigma.toFixed(2)}&emsp;&emsp;&emsp;Median: #{stats.median.toFixed(2)}&emsp;&emsp;&emsp;Min: #{stats.min.toFixed(0)}&emsp;&emsp;&emsp;Max: #{stats.max.toFixed(0)}
+		table
+			tr
+				th(style="font-size:1.5em") Interval
+				th(style="font-size:1.5em") Frequency
+				- for(var i=0; i<table.length;i++){
+					- var val = table[i]
+					- if(val[1] == 0){continue}
+					tr
+						td(style="text-align:center") #{val[0]}
+						td(style="text-align:center") #{val[1]}
+				- }
+
+		script(type='text/javascript').
+			$.jqplot('population',[ JSON.parse($(".values").text()) ,NormalZ_all(100,#{stats.mean},#{stats.sigma}) ],
+				{
+					title: "Population Properties"
+					, series: [
+						 {xaxis:'xaxis', label:'Line Histogram'}
+						, {xaxis:'xaxis',yaxis:'y2axis',label:'Normalized Distribution'}]
+					, axesDefaults: { 
+						tickOptions: {showGridline: false}
+						, min: 0
+					}
+					, axes: {
+						yaxis:{label: 'Frequency'}
+						, y2axis:{ 
+							tickOptions: {showLabel: false}
+							, showTicks: false
+						}
+						, xaxis: {
+							max:3000
+							, tickInterval: 500
+							, label: 'Elo'
+						}
+					}
+					, seriesDefaults:{showMarker: false}
+					, legend: {show:true}
+				});

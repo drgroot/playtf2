@@ -1,0 +1,33 @@
+#question{
+	margin-bottom:2em;
+}
+
+.question{
+	font-size: 2vw;
+}
+
+.answer{
+	padding: 0.25%;
+	padding-left: 1%;
+	font-family: Verdana;
+	color: #666;
+	font-size: 1.3vw;
+	text-align: justify;
+}
+
+#question a { 
+	text-decoration: none; 
+	color: #53868B;
+}
+#question a:link {
+    color: #53868B;
+}
+#question a:visited {
+    color: #53868B;
+}
+#question a:hover {
+    color: #00EEEE;
+}
+#question a:active {
+    color: #53868B;
+}

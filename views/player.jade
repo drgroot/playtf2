@@ -1,0 +1,37 @@
+extend layout
+block extraHeader
+	link(rel='stylesheet',href='/css/player.css')
+	link(rel='stylesheet',href='/css/jqplot.css')
+	script(src='/js/jqplot.js')
+	script(src='/js/plugins/jqplot.canvasAxisLabelRenderer.js')
+	script(src='/js/plugins/jqplot.canvasTextRenderer.js')
+	script(src='/js/plugins/jqplot.donutRenderer.js')
+	script(src='/js/plugins/jqplot.highlighter.js')
+	script(src='/js/probability.js')
+	script(src='/js/player.js')
+		
+block content
+	#main.round.curved #{title}
+	#cover
+	#row.flex.round
+		#bellCurve
+		#vitals
+			#vital Elo: 
+				span(id='elo',class='stat') 
+			#vital Mean: 
+				span(id='mean',class='stat') 
+			#vital Sigma: 
+				span(id='sigma' class='stat') 
+			#vital Kills: 
+				span(id='kills',class='stat') 
+			#vital Deaths: 
+				span(id='deaths' ,class='stat') 
+	#main.round Class Stats
+	#row.round
+		.flex
+			#plot-title(style="width:50%") Deaths By Class 
+				#deth_chart.chart
+			#plot-title(style="width:50%") Kills By Class 		
+				#kill_chart.chart
+		#legend.flex
+	.data(style='display:none') #{pID}

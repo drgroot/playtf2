@@ -1,0 +1,123 @@
+@font-face{
+	font-family: tf2;
+	src: url(tf2build.ttf);
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+*{
+	color: white;
+	font-family: sans-serif, normal;
+	overflow: hidden;
+	clear:both;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#title{
+	margin-top: 3%;
+	text-align: center;
+	font-family: 'tf2', serif;
+	font-weight: 400;
+	font-size: 40;
+	text-decoration:underline
+}
+
+img#bg {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index: -1;
+}
+
+#content {
+	margin:auto;
+	width: 692px;
+	height: 578px;
+	background-color: #443d6b;
+}
+
+#outline{
+	position: relative;
+	padding: 0 3% 0 3%;
+	margin: auto;
+	margin-top: 15px;
+	width: 97%;
+	border-style: solid;
+	border-width: 2px;
+	height: 92%;
+
+	/* the grid style lines */
+	background-color: #443d6b;
+	background-image: linear-gradient(white 0px, transparent 0px),
+	linear-gradient(90deg, white 0px, transparent 0px),
+	linear-gradient(#5f587f 1px, transparent 1px),
+	linear-gradient(90deg, #5f587f 1px, transparent 1px);
+	background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+	background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
+}
+
+#bottom{
+	padding-left: 5%;
+	font-size: 10px;
+	font-weight: bold;	
+}
+
+#left{
+	clear: none;
+	float: left;
+	margin-top: 2%;
+	height: 42%;
+	width: 50%;
+}
+
+#right{
+	clear: none;
+	float: right;
+	margin-top: 2%;
+	width: 50%;
+	height: 42%;
+}
+
+.title{
+	font-family: 'tf2', serif;	
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.desc{
+	font-size: 16px;
+}
+
+#spacer{
+	height: 40px;
+}
+.current span{
+	color: #00ff00;
+}
+
+#servers{
+	text-align:center;
+	position: absolute;
+	width: 93.5%;
+	height: 29%;
+	bottom: 0;
+	margin-bottom: 5%;
+	border-style: solid;
+	border-width: 2px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	padding: 2%;
+}
+
+#server{
+	margin-bottom: 1%;
+}

@@ -1,0 +1,19 @@
+#wrapper{
+	margin-top: 1%;
+	margin-bottom: 2%;
+}
+
+.green{
+	color: lightgreen;
+}
+
+.title{
+	font-family: 'tf2';
+	font-size: 120%;
+	text-decoration: underline;
+    text-shadow:
+   -0.4px -0.4px 0 #000,  
+    0.4px -0.4px 0 #000,
+    -0.4px 0.4px 0 #000,
+     0.4px 0.4px 0 #000;
+}

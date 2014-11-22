@@ -1,0 +1,6 @@
+[database]
+user = someUser
+password = somePass
+database = thisDatabase
+host = thisHost
+port = 3306

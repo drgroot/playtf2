@@ -1,0 +1,27 @@
+doctype html
+html
+   head
+      title Let's PlayTF2 - #{title}
+      link(rel='stylesheet',href='/css/base.css')
+      script(src='http://code.jquery.com/jquery-2.1.1.min.js')
+      script(type='text/javascript').
+         if (!String.prototype.format) {
+         String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function(match, number) { 
+               return typeof args[number] != 'undefined'
+                  ? args[number]
+                  : match
+               ;
+            });
+         };
+         }
+      block extraHeader
+   body
+      header
+         img(src='/img/header.png', alt='Lets PlayTF2')
+      #menu.flex
+         include ./menu.jade
+      wrapper
+      #wrapper
+         block content

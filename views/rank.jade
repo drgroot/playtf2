@@ -1,0 +1,58 @@
+extend layout
+block extraHeader
+	link(rel='stylesheet',href='/css/faq.css')
+
+block content
+	#content.round
+		#question
+			.question What is PlayTF2's ranking system?
+			.answer
+				| Our ranking system is a unique system not seen on any Source server before.
+				| It approximates a person's relative playing skill based off of the popular rating system
+				| <a href="http://en.wikipedia.org/wiki/Elo_rating_system">Elo</a>. The environment
+				| is then normalized with respect to total play time and kills; thus preventing
+				| farming and ensuring that all gamers have an equal chance to be the top of the ranking
+				| board
+		
+		#question
+			.question How can I boost my ranking?
+			.answer
+				| The easiest way to boost your ranking is to play better. 
+				| Our system looks at serveral factors when approximating relative skill.
+				| Some of these factors are:
+
+				ul
+					li Amount of team changes
+					li Winning Percentage and Kill to Death ratio
+					li GameStarter Factor &#153;
+					li Teamplay Abilities
+
+		#question
+			.question What is mean and sigma?
+			.answer 
+				| Every gamer is modeled to the <a href='http://en.wikipedia.org/wiki/Normal_distribution'>
+				| Gaussian Distribution</a>. The standard deviation (sigma) of the curve represents the
+				| degree of uncertainty in the ranking assigned to the gamer. 
+				| If the uncertainty is still high,
+				| the ranking system does not yet know the skill of the gamer. In contrast, if the 
+				| uncertainty is
+				| small, the ranking system has a strong belief as to what the gamer's skill is.
+
+		#question
+			.question What is GameStarter Factor&#153;?
+			.answer
+				| GameStarter Factor&#153; is a new system designed to encourage gamers to 
+				| join the server when it is empty. A small bias is applied to players who 
+				| join an empty server until it has become populated. This bias is not a constant; 
+				| it is a complex and intricate variable depending on several factors.
+
+		#question
+			.question How do you measure Teamplay Ability?
+			.answer
+				| Our ranking system runs on a smart and adaptive algorithm that observes and 
+				| learns as the game progresses while monitoring patterns and habits. The system 
+				| then processes this information and predicts 'key events' based off the monitored 
+				| history. For example, dynamic gamers that contribute to victories in the game by 
+				| defending or attacking multiple key locations are favored. The game is dynamic, thus 
+				| the system expects the best gamers to be dynamic as well. This is to discourage spawn 
+				| camping and farming.

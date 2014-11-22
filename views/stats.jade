@@ -1,0 +1,16 @@
+extend layout
+block extraHeader
+	link(rel='stylesheet',href='/css/stats.css')
+	script(src='/js/stats.js')
+block content
+	table(class='table')
+		tr
+			th Rank
+			th Player
+			th Elo
+			th Kills
+			th Deaths
+	#cover
+	#pager.flex
+		#prev.pagesel.button.round Prev Page
+		#next.pagesel.button.round Next Page

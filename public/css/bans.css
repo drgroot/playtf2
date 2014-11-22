@@ -1,0 +1,31 @@
+table{
+	font-family: sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-size: 1.5vw;
+	width: 100%;
+}
+
+table th{
+	background-color: #2f2e2c;
+	font-weight: normal;
+	color: #f7f7f7;
+	height: 6vh;
+	text-align: center;
+	padding: 0 2% 0 2%;
+}
+
+table td{
+	padding: 1%;
+	background-color: #f7f7f7;
+	color: #2f2e2c;
+	text-align: center;
+	font-size: 1.25vw;
+}
+
+.Permanent{
+	background-color: #ef4836;
+}
+
+.Expired{
+	background-color: #2ecc71;
+}
