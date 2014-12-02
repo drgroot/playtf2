@@ -16,8 +16,12 @@ $.getJSON('/get/bans',function(data){
 			player.remaining = 'Permanent'
 			player.expired = 1
 		}
-		else
+		else{
 			player.prettyLength = timeConvert( player.ban_length )
+			if(player.expired){
+				continue
+			}
+		}
 		
 		$(".table > tbody:last").append(tableRow.format(
 			player.player_name
