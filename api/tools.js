@@ -2,14 +2,14 @@ module.exports = {
 	queryPlayers: "SELECT player_id, name, 30*rank + 1500 as elo, \
 			IFNULL(SUM(kills),0) as kills,IFNULL(SUM(deaths),0) as deaths \
 			FROM players LEFT JOIN player_stats USING(steamID) \
-			GROUP BY steamID ORDER BY rank DESC LIMIT "
+			GROUP BY steamID ORDER BY rank DESC LIMIT ?"
 	, getPlayerVitals: "SELECT name, steamID, lastConnect, mew as mu, sigma, 30*rank + 1500 as elo \
-			FROM players WHERE player_id = {0}"
+			FROM players WHERE player_id = ?"
 	, queryBans: "SELECT *, TIMESTAMPDIFF(minute,`timestamp`,now()) as diff from my_bans"
-	, getKillStat: "SELECT roles,kills,deaths FROM player_stats WHERE steamID = '{0}'"
+	, getKillStat: "SELECT roles,kills,deaths FROM player_stats WHERE steamID = ?"
 	, getBest: "SELECT mew as mu,sigma FROM players ORDER BY rank DESC LIMIT 1"
 	, search: "SELECT player_id, name, 30*rank + 1500 as elo, SUM(kills) as kills, SUM(deaths) as deaths \
-			FROM players LEFT JOIN player_stats USING(steamID) WHERE name LIKE '%{0}%' \
+			FROM players LEFT JOIN player_stats USING(steamID) WHERE name LIKE '%?%' \
 			GROUP BY steamID ORDER BY rank LIMIT 10"
 	, population: "SELECT MAX(30*rank+1500) as max, MIN(30*rank+1500) as min, AVG(30*rank+1500) as mean, STD(30*rank+1500) as sigma FROM players"
 
@@ -47,9 +47,8 @@ module.exports = {
 				res.send(JSON.stringify(player));connection.destroy()
 				return
 			}
-			var query = me.getPlayerVitals; query = query.format(playerID)
 
-			connection.query(query, function(err,rows){
+			connection.query( me.getPlayerVitals, playerID , function(err,rows){
 				if(err != undefined || rows[0] == undefined){
 					res.send(JSON.stringify(player));connection.destroy()
 					return
@@ -57,12 +56,11 @@ module.exports = {
 				player = rows[0]
 
 				/* top mu and sigma */
-				connection.query(me.getBest, function(err,rows){
+				connection.query( me.getBest, function(err,rows){
 					player.bestMu = rows[0].mu; player.bestSigma = rows[0].sigma;
 
 					/* get player statistics */
-					query = me.getKillStat; query = query.format(player.steamID)
-					connection.query(query, function(err,rows){
+					connection.query( me.getKillStat, player.steamID, function(err,rows){
 						me.formkillObject(rows, player)
 
 						connection.destroy()
@@ -102,7 +100,7 @@ module.exports = {
 		var me  = this
 
 		pool.getConnection( function(err,connection){
-			connection.query(me.queryPlayers + 15*page, function(err,rows){
+			connection.query( me.queryPlayers , 15*page, function(err,rows){
 				
 				if(rows.length > 15) rows.splice(0,rows.length-15)
 				connection.destroy();
@@ -113,12 +111,11 @@ module.exports = {
 	}
 
 	, searchPlayers: function(name,res,pool){
-		var me = this; var r = []
+		var me = this;
 		pool.getConnection(function(err,connection){
-			var query = me.search; query = query.format(name)
-			connection.query(query, function(err,rows,fields){
+			connection.query( me.search, name , function(err,rows,fields){
 				if(err != undefined){
-					res.send(JSON.stringify(r))
+					res.send(JSON.stringify([]))
 				}
 				res.send(JSON.stringify(rows))
 			})
