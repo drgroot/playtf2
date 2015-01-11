@@ -30,7 +30,7 @@ function populate(page){
 		}
 
 		$(".playerName").click(function(){
-			window.location.href = '/player/{0}/{1}'.format($(this).attr('id'),$(this).text())
+			window.location.href = '/player/{0}/{1}'.format($(this).attr('id'), $(this).text().replace(/[^a-zA-Z_0-9]/g,'') )
 		})
 	})
 }
