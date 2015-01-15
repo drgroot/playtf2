@@ -37,11 +37,13 @@ app.use(bodyParser.urlencoded({
 	intiate connection to mysql database 
 */
 var pool = mysql.createPool({
+	connectionLimit: 10,
 	host: config.database.host,
 	user: config.database.user,
 	port: config.database.port,
 	database: config.database.database,
-	password: config.database.password
+	password: config.database.password,
+	multipleStatements: true
 })
 
 /*
@@ -66,10 +68,23 @@ app.get('/stats/', function(req,res){
 	res.render('stats',{title: 'Stats'})
 })
 
-/*
-	define routes for db queries
+/* 
+	routing conditions for getting data
 */
-app.get('/get/:data/:query?', function(req,res){ tools.dataHandler(req, res, pool) })
-app.get('/plot/:int?', function(req,res){ tools.makePlots(req,res,pool) })
+app.post('/get/page', function(req,res){	// list players on stats page
+	tools.list_players_page( req.body.page, res, pool )
+})
+app.get('/get/bans', function(req,res){ 	// list banned players
+	tools.list_bans( res, pool )
+})
+app.post('/get/player/kill_stats', function(req,res){		// returns class and kill stats
+	tools.player_kill_stats( req.body.player_id, res, pool )
+})
+app.post('/get/player/vitals', function(req,res){			// returns name and stuff
+	tools.player_vitals( req.body.player_id, res, pool )
+})
+app.post('/get/player/trueskill', function(req,res){		// get trueskill params
+	tools.player_trueskill( req.body.player_id, res, pool )
+})
 
 app.listen(3000)
