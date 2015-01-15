@@ -86,5 +86,8 @@ app.post('/get/player/vitals', function(req,res){			// returns name and stuff
 app.post('/get/player/trueskill', function(req,res){		// get trueskill params
 	tools.player_trueskill( req.body.player_id, res, pool )
 })
+app.post('/get/player/reputation', function(req,res){		// get raw reputation score
+	tools.player_reputation( req.body.player_id, res, pool )
+})
 
 app.listen(3000)

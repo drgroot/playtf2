@@ -15,6 +15,10 @@ module.exports = {
 
 	, query_player_trueskill: "SELECT mew as mu, sigma FROM players where player_id = ?; SELECT mew as bestMu, sigma as bestSigma FROM players ORDER BY rank DESC LIMIT 1"
 
+	, query_player_reputation: "SELECT IFNULL(SUM(rep),0) as rep FROM players_reputation a LEFT JOIN players ON players.steamID = a.steamID WHERE player_id = ?"
+
+	, query_player_rep_log: "SELECT rep, reason, rep_date FROM players_reputation a LEFT JOIN players b ON a.steamID = b.steamID WHERE player_id = ? AND timestampdiff(month,rep_date,now()) <= 1 ORDER BY rep_date desc"
+
 	, classes: ['spec','scout','sniper','soldier','demoman','medic','heavy','pyro','spy','engineer']
 
 	/*
@@ -34,6 +38,39 @@ module.exports = {
 		var me = this
 		pool.query( me.query_list_bans, function(err,rows){
 			res.send( JSON.stringify(rows) )
+		})
+	}
+
+	, player_reputation_log: function( player_id, res, pool ){
+		var me = this
+		pool.query( me.query_player_rep_log, player_id, function(err,rows){
+			res.send( JSON.stringify(rows) )
+		})
+	}
+
+	, player_reputation: function( player_id, res, pool ){
+		var me = this
+		var player = {}
+		player.cur_rep = 0
+		player.reasons = []
+		player.rep_log = []
+		var track_rep = 0
+
+		pool.query( me.query_player_reputation, player_id, function(err,rows){
+			player.cur_rep = rows[0].rep
+			track_rep = player.cur_rep
+
+			pool.query( me.query_player_rep_log, player_id ).on('result', function(row){
+				player.reasons.push( row.reason )
+				row.rep_date = 
+					JSON.stringify(row.rep_date).replace(/T/,' ').replace(/(\.[\w]+)/,'').replace(/"/g,'')
+				
+				player.rep_log.push( [ row.rep_date, track_rep ] )
+				track_rep -= row.rep
+			})
+			.on('end', function(){
+				res.send( JSON.stringify(player) )
+			})
 		})
 	}
 

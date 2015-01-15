@@ -7,11 +7,12 @@ block extraHeader
 	script(src='/js/plugins/jqplot.canvasTextRenderer.js')
 	script(src='/js/plugins/jqplot.donutRenderer.js')
 	script(src='/js/plugins/jqplot.highlighter.js')
+	script(src='//cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.8/plugins/jqplot.dateAxisRenderer.min.js')
 	script(src='/js/probability.js')
 	script(src='/js/player.js')
-		
+
 block content
-	#main.round.curved #{title}
+	#main.round.curved.main #{title}
 	#cover
 	#row.flex.round
 		#bellCurve
@@ -25,7 +26,8 @@ block content
 			#vital Kills: 
 				span(id='kills',class='stat') 
 			#vital Deaths: 
-				span(id='deaths' ,class='stat') 
+				span(id='deaths' ,class='stat')
+
 	#main.round Class Stats
 	#row.round
 		.flex
@@ -35,3 +37,8 @@ block content
 				#kill_chart.chart
 		#legend.flex
 	.data(style='display:none') #{pID}
+
+	#main.round.reputation Reputation
+	#row.round
+		#div &nbsp;
+			#reputation_log(style='margin-top:0.2em').chart

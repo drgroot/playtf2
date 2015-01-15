@@ -13,7 +13,7 @@ $(function(){
 		$("#mean").text(data.mu.toFixed(2))
 		$("#sigma").text(data.sigma.toFixed(2))
 
-		$("#main").html("{0}<br>{1}".format(data.name, data.steamID))
+		$(".main").html("{0}<br>{1}".format(data.name, data.steamID))
 	}, "json")
 
 	/* form kill stats */
@@ -55,8 +55,38 @@ $(function(){
 		$(".jqplot-xaxis-tick").hide()
 	}, "json")
 
+	/* reputation information */
+	$.post('/get/player/reputation',{
+		player_id: $(".data").text()
+	},function(data){
+		player.cur_rep = data.cur_rep
+		player.reasons = data.reasons
+		player.rep_log = data.rep_log
+
+		$(".reputation").text("Reputation: "+ data.cur_rep)
+		
+		reputation_log()
+
+	}, "json")
+
 	$(window).resize(function(){s()})
 })
+
+function reputation_log(){
+	$("#reputation_log").html("")
+	$.jqplot("reputation_log", [player.rep_log] , {
+		title: ''
+		, axes: {xaxis:{renderer:$.jqplot.DateAxisRenderer}}
+		, highlighter:{
+			show: true
+			, useAxesFormatters: false
+			, tooltipContentEditor: function(str,sI,pI,jp){
+				return "Reason: " + player.reasons[pI]
+			}
+		}
+	})
+	$(".jqplot-xaxis-tick").hide()
+}
 
 function makeCharts(data,chart_id,text){
 	$('#' + chart_id).html("");
@@ -98,6 +128,8 @@ function makeCharts(data,chart_id,text){
 }
 
 function s(){
+	reputation_log()
+
 	makeCharts(kills,'kill_chart',"Kills: ");
 	makeCharts(deaths,'deth_chart',"Deaths: ");
 

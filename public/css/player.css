@@ -33,7 +33,7 @@
 	font-weight: 100;
 }
 
-.chart{
+#plot-title > .chart{
 	height: 50vh;
 }
 
