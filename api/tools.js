@@ -64,7 +64,7 @@ module.exports = {
 	, player_vitals: function( player_id, res, pool ){
 		var me = this
 		pool.query( me.query_player_vitals, player_id, function(err,row){
-			res.send( JSON.stringify(row) )
+			res.send( JSON.stringify(row[0]) )
 		})
 	}
 
@@ -77,7 +77,7 @@ module.exports = {
 			result.bestMu = rows[1][0].bestMu
 			result.bestSigma = rows[1][0].bestSigma
 
-			res.send( JSON.stringify(rows) )
+			res.send( JSON.stringify(result) )
 		})
 	}
 	

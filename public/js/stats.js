@@ -17,7 +17,10 @@ function populate(page){
 	$("#cover").show()
 	cur_page = page
 
-	$.getJSON('/get/page/' + page, function(rows){
+	$.post('/get/page/', {
+		page: page
+	}, function(rows){
+	
 		$("table").find("tr:gt(0)").remove();
 		$("#cover").hide()
 		for(var index in rows){
@@ -32,5 +35,5 @@ function populate(page){
 		$(".playerName").click(function(){
 			window.location.href = '/player/{0}/{1}'.format($(this).attr('id'), $(this).text().replace(/[^a-zA-Z_0-9]/g,'') )
 		})
-	})
+	}, "json")
 }
