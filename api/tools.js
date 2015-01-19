@@ -7,6 +7,8 @@ module.exports = {
 			FROM players LEFT JOIN player_stats USING(steamID) \
 			GROUP BY steamID ORDER BY rank DESC LIMIT ?"
 
+	, query_list_reputation: "SELECT SUM(rep) as rep,steamID, `name`, player_id FROM players_reputation LEFT JOIN players USING(steamID) WHERE player_id IS NOT NULL GROUP BY steamID  ORDER BY SUM(rep) desc"
+
 	, query_list_bans: "SELECT *, TIMESTAMPDIFF(minute,`timestamp`,now()) as diff from my_bans"
 
 	, query_player_kill_stats: "SELECT roles,kills,deaths FROM player_stats LEFT JOIN players ON players.steamID =  player_stats.steamID WHERE player_id = ?"
@@ -24,6 +26,13 @@ module.exports = {
 	/*
 		Respond to data requests, and return request data
 	*/
+	, list_reputation: function( res, pool ){
+		var me = this
+		pool.query( me.query_list_reputation, function(err,rows){
+			res.send( JSON.stringify(rows) )
+		})
+	}
+
 	, list_players_page: function( page, res, pool ){
 		var me = this
 		pool.query( me.query_page_listPlayers, 15*page, function(err,rows){
