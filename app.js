@@ -55,8 +55,8 @@ app.get('/',function(req,res){
 app.get('/faq/',function(req,res){
 	res.render('rank',{title:'FAQ'})
 })
-app.get('/donate/',function(req,res){
-	res.render('donate',{title:'Donate'})
+app.get('/rep/',function(req,res){
+	res.render('rep',{title:'Reputation'})
 })
 app.get('/bans/', function(req,res){
 	res.render('bans',{title:'Bans'})
