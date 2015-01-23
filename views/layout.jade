@@ -2,8 +2,13 @@ doctype html
 html
 	head
 		title Let's PlayTF2 - #{title}
+
+		link(rel='stylesheet',href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
 		link(rel='stylesheet',href='/css/base.css')
-		script(src='http://code.jquery.com/jquery-2.1.1.min.js')
+
+		script(src='//code.jquery.com/jquery-2.1.1.min.js')
+		script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+
 		script(type='text/javascript').
 			if (!String.prototype.format) {
 			String.prototype.format = function() {
