@@ -1,8 +1,8 @@
 var player = {}
 var kills = []
 var deaths = []
-$(function(){
 
+$(function(){
 	/* formulate player vitals */
 	$.post('/get/player/vitals',{
 		player_id: $(".data").text()
@@ -15,7 +15,9 @@ $(function(){
 
 		$(".main").html("{0}<br>{1}".format(data.name, data.steamID))
 	}, "json")
+})
 
+$(function(){
 	/* form kill stats */
 	$.post('/get/player/kill_stats',{
 		player_id: $(".data").text()
@@ -31,7 +33,9 @@ $(function(){
 		makeCharts(kills, 'kill_chart', "Kills: ")
 		makeCharts(deaths, 'deth_chart', "Deaths: ")
 	}, "json")
+})
 
+$(function(){
 	/* populate trueskil plot */
 	$.post('/get/player/trueskill',{
 		player_id: $(".data").text()
@@ -54,7 +58,9 @@ $(function(){
 		$(".jqplot-yaxis-tick").hide()
 		$(".jqplot-xaxis-tick").hide()
 	}, "json")
+})
 
+$(function(){
 	/* reputation information */
 	$.post('/get/player/reputation',{
 		player_id: $(".data").text()
