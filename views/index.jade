@@ -1,31 +1,37 @@
 extend layout
 block content
-	#content.round
-		p(style='text-align:center')
-			#server.flex
-				img(src='http://image.www.gametracker.com/images/maps/160x120/tf2/ctf_turbine.jpg')
-				#stats
-					div 24/7 CTF_Turbine | Portland
-					#ip ip: 
-						span.small turbine.playtf2.com
-					div Status:
-						span.green ONLINE
-				img(src='http://cache.www.gametracker.com/images/graphs/server_players.php?GSID=4001118&start=-1m')
-			#server.flex
-				img(src='http://image.www.gametracker.com/images/maps/160x120/tf2/cp_badlands.jpg')
-				#stats
-					div 24/7 CP Rotation | Chicago
-					#ip ip: 
-						span.small badlands.playtf2.com
-					div Status:
-						span.green ONLINE
-				img(src='http://cache.www.gametracker.com/images/graphs/server_players.php?GSID=3835632&start=-1m')
-			#server.flex
-				img(src='http://image.www.gametracker.com/images/maps/160x120/tf2/plr_hightower.jpg')
-				#stats
-					div 24/7 PLR_Hightower | Portland
-					#ip ip: 
-						span.small hightower.playtf2.com
-					div Status:
-						span.green ONLINE
-				img(src='http://cache.www.gametracker.com/images/graphs/server_players.php?GSID=1740054&start=-1m')
+	.row
+		.col-md-4
+			img(src='http://image.www.gametracker.com/images/maps/160x120/tf2/ctf_turbine.jpg')
+		#stats.col-md-4
+			div 24/7 CTF_Turbine | Portland
+			#ip ip:
+				span turbine.playtf2.com
+			div Status:  
+				span.label.label-success ONLINE
+		.col-md-4
+			img(src='http://cache.www.gametracker.com/images/graphs/server_players.php?GSID=4001118&start=-1m')
+
+	.row
+		.col-md-4
+			img(src='http://image.www.gametracker.com/images/maps/160x120/tf2/plr_hightower.jpg')
+		#stats.col-md-4
+			div 24/7 PLR_Hightower | Portland
+			#ip ip:
+				span hightower.playtf2.com
+			div Status:  
+				span.label.label-success ONLINE
+		.col-md-4
+			img(src='http://cache.www.gametracker.com/images/graphs/server_players.php?GSID=1740054&start=-1m')
+
+	.row
+		.col-md-4
+			img(src='http://image.www.gametracker.com/images/maps/160x120/tf2/cp_badlands.jpg')
+		#stats.col-md-4
+			div 24/7 CP Rotation | Chicago
+			#ip ip:
+				span badlands.playtf2.com
+			div Status:  
+				span.label.label-success ONLINE
+		.col-md-4
+			img(src='http://cache.www.gametracker.com/images/graphs/server_players.php?GSID=3835632&start=-1m')
