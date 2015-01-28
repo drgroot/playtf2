@@ -19,6 +19,26 @@ html
 			};
 			}
 
+		// piwik javascript
+		script(type='text/javascript').
+			var _paq = _paq || [];
+			_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+			_paq.push(["setCookieDomain", "*.playtf2.com"]);
+			_paq.push(["setDomains", ["*.playtf2.com","*.forums.playtf2.com"]]);
+			_paq.push(['trackPageView']);
+			_paq.push(['enableLinkTracking']);
+			(function() {
+				var u="//piwik.playtf2.com/";
+				_paq.push(['setTrackerUrl', u+'piwik.php']);
+				_paq.push(['setSiteId', 2]);
+				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+			})();
+
+		noscript
+			p
+				img(src="//piwik.playtf2.com/piwik.php?idsite=2",style="border:0;",alt="")
+
 		block extraHeader
 	body
 		nav.navbar.navbar-default
