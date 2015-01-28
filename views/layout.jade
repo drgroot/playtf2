@@ -4,6 +4,7 @@ html
 		title Let's PlayTF2 - #{title}
 
 		link(rel='stylesheet',href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+		link(rel='stylesheed',href='css/base.css')
 
 		// script for string.format javascript
 		script(type='text/javascript').
@@ -41,20 +42,19 @@ html
 
 		block extraHeader
 	body
-		nav.navbar.navbar-default
-			.container-fluid
+		nav.navbar
+			.container
 				.navbar-header
-					include ./menu.jade
+					a.navbar-brand.pull-left(href="/") PlayTF2
+				.collapse.navbar-collapse
+					ul.nav.navbar-nav.navbar-right
+						include ./menu.jade
 
-		//.container
-			.row
-				img(src='/img/header.png', alt='Lets PlayTF2')
+		.container
+			img.img-responsive(src='/img/header.png', alt='Lets PlayTF2')
 			
-			#menu.row
-				
-		wrapper
-		#wrapper
 			block content
+			
 
 		script(src='//code.jquery.com/jquery-2.1.1.min.js')
 		script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
