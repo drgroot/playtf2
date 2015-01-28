@@ -6,9 +6,7 @@ html
 		link(rel='stylesheet',href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
 		link(rel='stylesheet',href='/css/base.css')
 
-		script(src='//code.jquery.com/jquery-2.1.1.min.js')
-		script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
-
+		// script for string.format javascript
 		script(type='text/javascript').
 			if (!String.prototype.format) {
 			String.prototype.format = function() {
@@ -21,6 +19,27 @@ html
 				});
 			};
 			}
+
+		// piwik javascript
+		script(type='text/javascript').
+			var _paq = _paq || [];
+			_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+			_paq.push(["setCookieDomain", "*.playtf2.com"]);
+			_paq.push(["setDomains", ["*.playtf2.com","*.forums.playtf2.com"]]);
+			_paq.push(['trackPageView']);
+			_paq.push(['enableLinkTracking']);
+			(function() {
+				var u="//piwik.playtf2.com/";
+				_paq.push(['setTrackerUrl', u+'piwik.php']);
+				_paq.push(['setSiteId', 2]);
+				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+			})();
+
+		noscript
+			p
+				img(src="//piwik.playtf2.com/piwik.php?idsite=2",style="border:0;",alt="")
+
 		block extraHeader
 	body
 		header
@@ -30,3 +49,7 @@ html
 		wrapper
 		#wrapper
 			block content
+
+		script(src='//code.jquery.com/jquery-2.1.1.min.js')
+		script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+		block externalscripts
