@@ -1,11 +1,13 @@
 extend layout
 block extraHeader
 	link(rel='stylesheet',href='/css/stats.css')
-	script(src='/js/rep.js')
+	
 block content
 	table(class='table')
 		tr
 			th Rank
 			th Player
 			th Reputation
-	#cover
+
+block externalscripts
+	script(src='/js/rep.js')
