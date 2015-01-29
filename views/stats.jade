@@ -1,7 +1,7 @@
 extend layout
 block extraHeader
 	link(rel='stylesheet',href='/css/stats.css')
-	script(src='/js/stats.js')
+	
 block content
 	table(class='table')
 		tr
@@ -10,7 +10,10 @@ block content
 			th Elo
 			th Kills
 			th Deaths
-	#cover
-	#pager.flex
-		#prev.pagesel.button.round Prev Page
-		#next.pagesel.button.round Next Page
+	
+	#pager.btn-group
+		button#prev.pagesel.btn.btn-default Prev Page
+		button#next.pagesel.btn.btn-default Next Page
+
+block externalscripts
+	script(src='/js/stats.js')
