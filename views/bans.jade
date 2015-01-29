@@ -1,7 +1,6 @@
 extend layout
 block extraHeader
 	link(rel='stylesheet',href='/css/bans.css')
-	script(src='/js/bans.js')
 
 block content
 		table.table
@@ -13,4 +12,5 @@ block content
 				th Remaining
 			tr
 
-		
+block externalscripts
+	script(src='/js/bans.js')
